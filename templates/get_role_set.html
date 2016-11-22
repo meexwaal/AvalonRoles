@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>RESISTANCE</title>
+    </head>
+    <body>
+        <p>There are
+            {{ NUMGOOD }} <span style="color:blue">Servants of Arthur</span>
+            and
+            {{ NUMBAD }} <span style="color:red">Minions of Mordred</span>
+        </p>
+        <form action="/redirectRoles" method="post">
+            <p>What character set do you want to use?</p>
+
+            <input type="submit" name="submit" value="Bland"/>
+            <label>
+                {{ NUMGOOD }} <span style="color:blue">Knights</span>,
+                {{ NUMBAD }} <span style="color:red">Oberons</span>
+            </label>
+            <br>
+
+            <input type="submit" name="submit" value="Blind Spies"/>
+            <label>
+                {{ NUMGOOD }} <span style="color:blue">Knights</span>,
+                {{ NUMBAD }} <span style="color:red">Minions</span>
+            </label>
+            <br>
+
+            <input type="submit" name="submit" value="Party"/>
+            <label>
+                <span style="color:blue">Merlin</span>,
+                <span style="color:blue">Percival</span>,
+                <span style="color:red">Mordred</span>,
+                <span style="color:red">Morgana</span><!--
+             -->{% if NUMBAD > 2 %}<!--
+                 -->, <span style="color:red">Oberon</span>
+                {% endif %}
+            </label>
+            <br>
+
+            <input type="submit" name="submit" value="Snape"/>
+            <label>
+                <span style="color:blue">Merlin</span>,
+                <span style="color:blue">Percival</span>,
+                Random {{ NUMBAD }} from {
+                <span style="color:red">Snape</span>,
+                <span style="color:red">Mordred</span><!--
+             -->{% if NUMGOOD + 1 > 2 %}<!--
+                 -->, <span style="color:red">Morgana</span><!--
+             -->{% endif %}<!--
+             -->{% if NUMGOOD + 1 > 3 %}<!--
+                 -->, <span style="color:red">Oberon</span><!--
+             -->{% endif %}<!--
+             -->{% if NUMGOOD + 1 > 4 %}<!--
+                 -->, {{ NUMGOOD + 1 - 4 }}
+                    <span style="color:red">Minion{{
+                      's' if NUMGOOD + 1 - 4 > 1 }}</span>
+                {% endif %}
+
+                }
+            </label>
+            <br>
+
+            <input type="submit" name="submit" value="Lancelot"/>
+            <label>
+                <span style="color:blue">Merlin</span>,
+                <span style="color:blue">Percival</span>,
+                <span style="color:blue">Good Lancelot</span>,
+                <span style="color:red">Evil Lancelot</span>,
+                <span style="color:red">Mordred</span><!--
+             -->{% if NUMBAD > 2 %}<!--
+                 -->, <span style="color:red">Morgana</span><!--
+             -->{% endif %}<!--
+             -->{% if NUMBAD > 3 %}<!--
+                 -->, <span style="color:red">Oberon</span><!--
+             -->{% endif %}
+            </label>
+            <br>
+
+            <input type="submit" name="submit" value="Custom"/>
+            <label>
+                Choose your own set
+            </label>
+        </form>
+    </body>
+</html>
