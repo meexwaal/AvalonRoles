@@ -1,9 +1,12 @@
-from flask import Flask, render_template, request, redirect
-from enum import Enum
+from flask import Flask, render_template, request, redirect, session
+from enum import IntEnum
 import math, random
 
 app = Flask(__name__)
-class Roles(Enum):
+app.secret_key = '''#d\xce/W\x87\xfaF\x02\x9a]r\xda\x02\xbcX;\xaa\xf6xI\xf5\x91
+\xa3\xdd\xbb'''
+
+class Roles(IntEnum):
     NORMAL_GOOD = 0
     MERLIN = 1
     PERCIVAL = 2
@@ -14,8 +17,6 @@ class Roles(Enum):
     OBERON = 7
     SNAPE = 8
     BAD_LANCELOT = 9
-
-gameData = {}
 
 # Landing page
 @app.route('/')
@@ -31,26 +32,26 @@ def show_num_players():
 # Gets number of players from num_players.html
 @app.route('/setNumPlayers', methods = ['POST'])
 def get_num_players():
-    gameData['numPlayers'] = int(request.form['numPlayers'])
+    session['numPlayers'] = int(request.form['numPlayers'])
     return render_template('player_names.html',
-                           numPlayers = int(gameData['numPlayers']))
+                           numPlayers = int(session['numPlayers']))
 # Renders page to get the names of the players
 
 # Gets player names from player_names.html
 @app.route('/setPlayerNames', methods = ['POST'])
 def get_player_names():
-    gameData['playerNames'] = request.form.getlist('name')
+    session['playerNames'] = request.form.getlist('name')
     return render_template('get_role_set.html',
-                           NUMGOOD = num_good(gameData['numPlayers']),
-                           NUMBAD = num_bad(gameData['numPlayers']))
+                           NUMGOOD = num_good(session['numPlayers']),
+                           NUMBAD = num_bad(session['numPlayers']))
 # Renders page to get set of roles to use in this game
 
 # Gets set of roles from get_role_set.html
 @app.route('/redirectRoles', methods = ['POST'])
 def set_roles():
     rset = request.form['submit']
-    numGood = num_good(gameData['numPlayers'])
-    numBad = num_bad(gameData['numPlayers'])
+    numGood = num_good(session['numPlayers'])
+    numBad = num_bad(session['numPlayers'])
 
     if(rset == 'Custom'):
         return render_template('get_custom_roles.html',
@@ -107,8 +108,8 @@ def set_roles():
             badRoles.append(Roles.OBERON)
         badRoles.extend([Roles.NORMAL_BAD] * (numBad - 4))
 
-    gameData['goodRoles'] = goodRoles
-    gameData['badRoles'] = badRoles
+    session['goodRoles'] = goodRoles
+    session['badRoles'] = badRoles
     return redirect('/assignRoles')
 # Routes to page to assign roles
 
@@ -127,12 +128,12 @@ def set_custom_roles():
     badRoles.extend([Roles.BAD_LANCELOT] * int(request.form['numBadLance']))
     badRoles.extend([Roles.OBERON] * int(request.form['numOberon']))
     badRoles.extend([Roles.SNAPE] * int(request.form['numSnape']))
-    if(len(goodRoles) < num_good(gameData['numPlayers']) or
-       len(badRoles) < num_bad(gameData['numPlayers'])):
+    if(len(goodRoles) < num_good(session['numPlayers']) or
+       len(badRoles) < num_bad(session['numPlayers'])):
         return render_template('get_custom_roles.html',
                                MSG = "MISTAKE!",
-                               NUMGOOD = num_good(gameData['numPlayers']),
-                               NUMBAD = num_bad(gameData['numPlayers']),
+                               NUMGOOD = num_good(session['numPlayers']),
+                               NUMBAD = num_bad(session['numPlayers']),
                                NUM_KNIGHTS = int(request.form['numKnights']),
                                NUM_MERLIN = int(request.form['numMerlin']),
                                NUM_PERCIVAL = int(request.form['numPercy']),
@@ -144,47 +145,47 @@ def set_custom_roles():
                                NUM_OBERON = int(request.form['numOberon']),
                                NUM_BADL = int(request.form['numBadLance']))
 
-    gameData['goodRoles'] = goodRoles
-    gameData['badRoles'] = badRoles
+    session['goodRoles'] = goodRoles
+    session['badRoles'] = badRoles
     return redirect('/assignRoles')
 # Routes to page to assign roles
 
 # Assigns roles
 @app.route('/assignRoles')
 def assign_roles():
-    numGood = num_good(gameData['numPlayers'])
-    numBad = num_bad(gameData['numPlayers'])
-    assert(len(gameData['goodRoles']) >= numGood)
-    assert(len(gameData['badRoles']) >= numBad)
+    numGood = num_good(session['numPlayers'])
+    numBad = num_bad(session['numPlayers'])
+    assert(len(session['goodRoles']) >= numGood)
+    assert(len(session['badRoles']) >= numBad)
 
-    random.shuffle(gameData['goodRoles'])
-    random.shuffle(gameData['badRoles'])
-    gameRoles = gameData['goodRoles'][:numGood] + gameData['badRoles'][:numBad]
+    random.shuffle(session['goodRoles'])
+    random.shuffle(session['badRoles'])
+    gameRoles = session['goodRoles'][:numGood] + session['badRoles'][:numBad]
     random.shuffle(gameRoles)
-    gameData['gameRoles'] = gameRoles
+    session['gameRoles'] = gameRoles
     return redirect('/pass_to/0/')
 # Routes to page that says to pass to 0th player
 
 # Comes from assignRoles ot showRole/<i-1>
 @app.route('/pass_to/<int:i>/')
 def show_to(i):
-    if(i >= gameData['numPlayers']):
+    if(i >= session['numPlayers']):
         return render_template('/done.html')
     return render_template('/pass_to.html',
-                           INDEX = i, NAME = gameData['playerNames'][i])
+                           INDEX = i, NAME = session['playerNames'][i])
 # Renders page with instructions to pass to the ith player
 
 # Comes from "pass to" page
 @app.route('/showRole/<int:i>/')
 def show_role(i):
-    roles = gameData['gameRoles']
-    names = gameData['playerNames']
+    roles = session['gameRoles']
+    names = session['playerNames']
     role = roles[i]
-    name = gameData['playerNames'][i]
+    name = session['playerNames'][i]
     nxt = i+1
     flav = get_flavor()
     public_spies = [names[j]
-                    for j in range(0, gameData['numPlayers'])
+                    for j in range(0, session['numPlayers'])
                     if is_public_spy(roles[j])]
 
     # TODO: make role assingment amenable to multiple Morganas, Merlins, etc.
@@ -199,7 +200,7 @@ def show_role(i):
                                FLAVOR = flav)
     elif(role == Roles.MERLIN):
         merlin_spies = [names[j]
-                        for j in range(0, gameData['numPlayers'])
+                        for j in range(0, session['numPlayers'])
                         if roles[j]
                         in [Roles.NORMAL_BAD, Roles.MORGANA, Roles.OBERON,
                             Roles.BAD_LANCELOT]]
@@ -293,8 +294,8 @@ def redirect_restart():
         return redirect('/assignRoles')
     elif(option == "New Roles"):
         return render_template('get_role_set.html',
-                               NUMGOOD = num_good(gameData['numPlayers']),
-                               NUMBAD = num_bad(gameData['numPlayers']))
+                               NUMGOOD = num_good(session['numPlayers']),
+                               NUMBAD = num_bad(session['numPlayers']))
     elif(option == "New Players"):
         return redirect('/num_players')
     else:
@@ -338,4 +339,4 @@ def get_flavor():
 
 # Flask needs this and I don't understand python enough to question it
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
