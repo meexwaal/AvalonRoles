@@ -1,23 +1,115 @@
 <!doctype html>
 <head>
     <link href='style.css' rel='stylesheet'>
+    <title>Avalon Roles</title>
 </head>
 <body>
-    <title>Avalon Roles</title>
+    <!-- Load Scripts -->
     <script type="text/javascript"
-            src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">
-    </script>
-
+            src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
     <script src="app.js"></script>
-    <div class="num_players_screen">
-        <input type="number" min="5" size="5" value="5" name="num_players">
+
+    <!-- Page to get num_players -->
+    <div class="num_players_page">
+        <input type="number" min="5" value="5" name="num_players">
         <!-- <input type="text" size="5" name="b"> =
              <span id="result">?</span></p> -->
         <br>
-        <a href=# id="num_players_button">Next</a>
+        <input type="submit" id="num_players_button" value="Next"/>
     </div>
 
-    <div class="get_names_screen">
-        <a href=# id="get_players_button">Next</a>
+    <!-- Page to get player names -->
+    <div class="get_names_page">
+        <input type="submit" id="get_names_button" value="Next"/>
+    </div>
+
+    <!-- Page to get role set -->
+    <div class="get_role_set_page">
+        <!-- Display num_good and num_bad -->
+        <p>There are
+            <span class="num_good"></span>
+            <span style="color:blue">Servants of Arthur</span> and
+            <span class="num_bad"></span>
+            <span style="color:red">Minions of Mordred</span>
+        </p>
+
+        <p>What character set do you want to use?</p>
+
+        <!-- Bland -->
+        <input type="submit" id="bland_set" value="Bland"/>
+        <label>
+            <span class="num_good"></span>
+            <span style="color:blue">Knights</span>,
+            <span class="num_bad"></span>
+            <span style="color:red">Oberons</span>
+        </label>
+        <br>
+
+        <!-- Blind Spies -->
+        <input type="submit" id="blind_set" value="Blind Spies"/>
+        <label>
+            <span class="num_good"></span>
+            <span style="color:blue">Knights</span>,
+            <span class="num_bad"></span>
+            <span style="color:red">Minions</span>
+        </label>
+        <br>
+
+        <!-- Party -->
+        <input type="submit" id="party_set" value="Party"/>
+        <label>
+            <span style="color:blue">Merlin</span>,
+            <span style="color:blue">Percival</span>,
+            <span style="color:red">Mordred</span>,
+            <span style="color:red">Morgana</span><!--
+         --><span class="remove_lt_3_bad">,
+                <!-- Javascript will remove if there are <3 spies -->
+                <span style="color:red">Oberon</span>
+            </span>
+        </label>
+        <br>
+
+        <!-- Snape -->
+        <input type="submit" id="snape_set" value="Snape"/>
+        <label>
+            <span style="color:blue">Merlin</span>,
+            <span style="color:blue">Percival</span>,
+            Random <span class="num_bad"></span> from {
+            <span style="color:blue">Snape</span>,
+            <span style="color:red">Mordred</span>,
+            <span style="color:red">Morgana</span>,
+            <span style="color:red">Oberon</span><!--
+         --><span class="remove_lt_4_good">,
+                <!-- Javascript will remove if there are <4 good -->
+                <span class="num_good-3"></span> <!-- (num_good - 3) -->
+                <span style="color:red">Minion<span class="remove_lt_5_good">s</span>
+                </span>
+            </span>
+            }
+        </label>
+        <br>
+
+        <!-- Lancelot -->
+        <input type="submit" id="lancelot_set" value="Lancelot"/>
+        <label>
+            <span style="color:blue">Merlin</span>,
+            <span style="color:blue">Percival</span>,
+            <span style="color:blue">Good Lancelot</span>,
+            <span style="color:red">Evil Lancelot</span>,
+            <span style="color:red">Mordred</span><!--
+         --><span class="remove_lt_3_bad">,
+                <span style="color:red">Morgana</span><!--
+         --></span><!--
+         --><span class="remove_lt_4_bad">,
+                <span style="color:red">Oberon</span>
+            </span>
+        </label>
+        <br>
+
+        <!-- Custom -->
+        <input type="submit" id="custom_set" value="Custom"/>
+        <label>
+            Choose your own set
+        </label>
     </div>
 </body>

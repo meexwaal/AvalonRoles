@@ -5,13 +5,19 @@ body {
     position: relative;
 }
 
-.num_players_screen {
+.num_players_page {
     left: 0px;
-    height: 100%;
+    /* height: 100%; */
     position: fixed;
-    width: 300px;
+    /* width: 300px; */
 }
 
-.get_names_screen {
+.get_names_page {
     left: -300px;
+    position: fixed;
+}
+
+.get_role_set_page {
+    left: -3000px;
+    position: fixed;
 }
