@@ -9,15 +9,35 @@ body {
     left: 0px;
     /* height: 100%; */
     position: fixed;
-    /* width: 300px; */
+    width: 300px;
 }
 
 .get_names_page {
     left: -300px;
     position: fixed;
+    width: 300px;
 }
 
 .get_role_set_page {
-    left: -3000px;
+    left: -300px;
     position: fixed;
+    width: 300px;
+}
+
+.pass_to_page {
+    left: -300px;
+    position: fixed;
+    width: 300px;
+}
+
+.show_role_page {
+    left: -300px;
+    position: fixed;
+    width: 300px;
+}
+
+.done_page {
+    left: -300px;
+    position: fixed;
+    width: 300px;
 }

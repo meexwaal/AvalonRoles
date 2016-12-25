@@ -112,4 +112,70 @@
             Choose your own set
         </label>
     </div>
+
+    <!-- Page to show who to pass to -->
+    <div class="pass_to_page">
+        Pass to <span class="name"></span>
+        <br>
+        <input type="submit" id="pass_to_button" value="That's me"/>
+    </div>
+
+    <!-- Page to show role information -->
+    <div class="show_role_page">
+        <p><span class="name"></span></p>
+        <p>
+            Alignment: Loyal to <span class="alignment"></span>
+            <br>
+            Role: <span class="role"></span>.
+        </p>
+
+        <div class="spy_info">
+            The Minions of Mordred (that you know about) are:
+            <ul id="spy_list">
+                <!-- <li> {{ SPY }} </li> -->
+            </ul>
+        </div>
+
+        <div id="bad_lancelot_info">
+            Evil Lancelot is: <span id="bad_lancelot"></span>
+        </div>
+
+        <div id="snape_info">
+            Snape is: <span id="snape"></span>
+        </div>
+
+        <div id="merlin_info">
+            Merlin is: <span id="merlin"></span>
+        </div>
+
+        <div id="percival_info">
+            Merlin (or Morgana) is:
+            <ul id="percival_list">
+                <!-- <li>{{ player }}</li> -->
+            </ul>
+        </div>
+
+        <p>When the Done button appears, click it to hide your role.</p>
+        <input type="submit" id="show_role_button" value="Done"/>
+    </div>
+
+    <!-- Page to redirect after all is done -->
+    <div class="done_page">
+        <input type="submit" id="same_setup_button" value="Same Setup"/>
+        <label>
+            Play again with the same players and the same set of roles.
+        </label>
+        <br>
+
+        <input type="submit" id="new_roles_button" value="New Roles"/>
+        <label>
+            Play again with the same players but with new roles.
+        </label>
+        <br>
+
+        <input type="submit" id="new_players_button" value="New Players"/>
+        <label>
+            Start over with a new setup.
+        </label>
+    </div>
 </body>
