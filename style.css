@@ -4,40 +4,49 @@ body {
     overflow: hidden;
     position: relative;
 }
+p + ul {
+    margin-top: -16px;          /* Font size */
+}
 
 .num_players_page {
     left: 0px;
     /* height: 100%; */
     position: fixed;
-    width: 300px;
+    width: 100vw;
 }
 
 .get_names_page {
-    left: -300px;
+    left: -100vw;
     position: fixed;
-    width: 300px;
+    width: 100vw;
 }
 
 .get_role_set_page {
-    left: -300px;
+    left: -100vw;
     position: fixed;
-    width: 300px;
+    width: 100vw;
+}
+
+.get_custom_set_page {
+    left: -100vw;
+    position: fixed;
+    width: 100vw;
 }
 
 .pass_to_page {
-    left: -300px;
+    left: -100vw;
     position: fixed;
-    width: 300px;
+    width: 100vw;
 }
 
 .show_role_page {
-    left: -300px;
+    left: -100vw;
     position: fixed;
-    width: 300px;
+    width: 100vw;
 }
 
 .done_page {
-    left: -300px;
+    left: -100vw;
     position: fixed;
-    width: 300px;
+    width: 100vw;
 }

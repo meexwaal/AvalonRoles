@@ -1,6 +1,7 @@
 <!doctype html>
 <head>
     <link href='style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
     <title>Avalon Roles</title>
 </head>
 <body>
@@ -41,7 +42,7 @@
             <span class="num_good"></span>
             <span style="color:blue">Knights</span>,
             <span class="num_bad"></span>
-            <span style="color:red">Oberons</span>
+            <span style="color:red">Minions</span>
         </label>
         <br>
 
@@ -51,7 +52,7 @@
             <span class="num_good"></span>
             <span style="color:blue">Knights</span>,
             <span class="num_bad"></span>
-            <span style="color:red">Minions</span>
+            <span style="color:red">Oberons</span>
         </label>
         <br>
 
@@ -82,7 +83,8 @@
          --><span class="remove_lt_4_good">,
                 <!-- Javascript will remove if there are <4 good -->
                 <span class="num_good-3"></span> <!-- (num_good - 3) -->
-                <span style="color:red">Minion<span class="remove_lt_5_good">s</span>
+                <span style="color:red">Minion<span class="remove_lt_5_good">s
+                </span>
                 </span>
             </span>
             }
@@ -113,6 +115,73 @@
         </label>
     </div>
 
+    <!-- Page to get custom set of roles -->
+    <div class="get_custom_set_page">
+        <p>
+            There are
+            <span class="num_good"></span>
+            <span style="color:blue">Servants of Arthur</span> and
+            <span class="num_bad"></span>
+            <span style="color:red">Minions of Mordred</span>
+        </p>
+        <p>
+            If you select more roles of one alignment than the number of players
+            with that alignment, the site will use a random subset of the
+            selected roles of that alignment.
+        </p>
+        <p>
+            Note: If you select more than <span class="num_good"></span>
+            <span style="color:blue">Servants of Arthur</span>, Merlin may not be
+            selected.
+        </p>
+        <p>
+            For Snape, use <span class="num_good"></span>
+            <span style="color:red">Minions of Mordred</span>
+            and 1 <span style="color:blue">Snape</span>.
+        </p>
+
+
+        <span style="color:blue">Servants of Arthur</span>
+        <br>
+        <input type="number" id="num_normal_good" min="0">
+        <label>Knights</label>
+        <br>
+        <input type="number" id="num_merlin" min="1" max="1">
+        <label>Merlin</label>
+        <br>
+        <input type="number" id="num_percival" min="0">
+        <label>Percival</label>
+        <br>
+        <input type="number" id="num_good_lancelot" min="0" max="1">
+        <label>Good Lancelot</label>
+        <br>
+        <input type="number" id="num_snape" min="0" max="1">
+        <label>Snape</label>
+        <br>
+        <br>
+
+        <span style="color:red">Minions of Mordred</span>
+        <br>
+        <input type="number" id="num_normal_bad" min="0">
+        <label>Minions</label>
+        <br>
+        <input type="number" id="num_mordred" min="0">
+        <label>Mordred</label>
+        <br>
+        <input type="number" id="num_morgana" min="0" max="1">
+        <label>Morgana</label>
+        <br>
+        <input type="number" id="num_oberon" min="0">
+        <label>Oberon</label>
+        <br>
+        <input type="number" id="num_bad_lancelot" min="0" max="1">
+        <label>Bad Lancelot</label>
+        <br>
+        <br>
+
+        <input type="submit" id="get_custom_set_button" value="Done"/>
+    </div>
+
     <!-- Page to show who to pass to -->
     <div class="pass_to_page">
         Pass to <span class="name"></span>
@@ -130,7 +199,7 @@
         </p>
 
         <div class="spy_info">
-            The Minions of Mordred (that you know about) are:
+            <p>The Minions of Mordred (that you know about) are:</p>
             <ul id="spy_list">
                 <!-- <li> {{ SPY }} </li> -->
             </ul>
@@ -149,7 +218,7 @@
         </div>
 
         <div id="percival_info">
-            Merlin (or Morgana) is:
+            <p>Merlin (or Morgana) is:</p>
             <ul id="percival_list">
                 <!-- <li>{{ player }}</li> -->
             </ul>

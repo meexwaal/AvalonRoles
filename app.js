@@ -62,15 +62,17 @@ get_number = function() {
 show_get_names = function() {
     $('#num_players_button').unbind();
     $('.num_players_page').animate({
-        left: "-300px"
+        left: "-100vw"
     }, 200);
 
     // Populate the page with text boxes for player names
-    $('.get_names_page').find("input[type='text']").remove();
+    //$('.get_names_page').find
+    $(".get_name_input").remove();
     for(var i = num_players - 1; i >= 0; i--){
         $('.get_names_page').prepend(
-            '<input type="text" name="name' + String(i) + '"> <br>'
-        );
+            "<span class='get_name_input'> \
+<input type='text' name='name" + String(i) + "'> \
+<br></span>");
     }
 
     $('.get_names_page').animate({
@@ -89,7 +91,7 @@ get_names = function() {
 show_get_role_set = function() {
     $('#get_names_button').unbind();
     $('.get_names_page').animate({
-        left: "-300px"
+        left: "-100vw"
     }, 200);
 
     // Fill class=num_good with value of num_good
@@ -123,6 +125,68 @@ show_get_role_set = function() {
     $('#lancelot_set').bind('click', set_lancelot_set);
     $('#custom_set').bind('click', show_get_custom_set);
 };
+show_get_custom_set = function() {
+    hide_get_role_set();
+    $('.get_custom_set_page').animate({
+        left: "0px"
+    }, 200);
+
+    $('#get_custom_set_button').bind('click', function(){
+        if(get_custom_set()){ // If there are enough goods and bads
+            $('.get_custom_set_page').animate({
+                left: "-100vw"
+            }, 200);
+            $('#get_custom_set_button').unbind();
+            assign_roles();
+        }
+    });
+};
+get_custom_set = function() {
+    good_roles = [];
+    bad_roles = [];
+    for(var i = 0; i < $('#num_normal_good').val(); i++){
+        good_roles.push(Roles.normal_good);
+    }
+    for(var i = 0; i < $('#num_merlin').val(); i++){
+        good_roles.push(Roles.merlin);
+    }
+    for(var i = 0; i < $('#num_percival').val(); i++){
+        good_roles.push(Roles.percival);
+    }
+    for(var i = 0; i < $('#num_good_lancelot').val(); i++){
+        good_roles.push(Roles.good_lancelot);
+    }
+    for(var i = 0; i < $('#num_snape').val(); i++){
+        bad_roles.push(Roles.snape);
+    }
+    for(var i = 0; i < $('#num_normal_bad').val(); i++){
+        bad_roles.push(Roles.normal_bad);
+    }
+    for(var i = 0; i < $('#num_mordred').val(); i++){
+        bad_roles.push(Roles.mordred);
+    }
+    for(var i = 0; i < $('#num_morgana').val(); i++){
+        bad_roles.push(Roles.morgana);
+    }
+    for(var i = 0; i < $('#num_oberon').val(); i++){
+        bad_roles.push(Roles.oberon);
+    }
+    for(var i = 0; i < $('#num_bad_lancelot').val(); i++){
+        bad_roles.push(Roles.bad_lancelot);
+    }
+    if(good_roles.length < num_good){
+        alert("You need at least " + num_good +
+              " Servants of Arthur (not including Snape)");
+        return false;
+    }
+    if(bad_roles.length < num_bad){
+        alert("You need at least " + num_bad +
+              " Minions of Mordred (including Snape)");
+        return false;
+    }
+    return true;
+};
+
 set_bland_set = function() {
     for(var i = 0; i < num_good; i++){
         good_roles.push(Roles.normal_good);
@@ -215,6 +279,7 @@ function assign_roles() {
     shuffle(use_roles);
 
     hide_get_role_set();
+    show_pass_to(0);
 }
 
 function hide_get_role_set(){
@@ -226,15 +291,14 @@ function hide_get_role_set(){
     $('#custom_set').unbind();
 
     $('.get_role_set_page').animate({
-        left: "-300px"
+        left: "-100vw"
     }, 200);
-    show_pass_to(0);
 }
 
 show_pass_to = function(player_index) {
     $('#show_role_button').unbind();
     $('.show_role_page').animate({
-        left: "-300px"
+        left: "-100vw"
     }, 200);
     // Reset role info page
     $('.alignment').empty();
@@ -269,7 +333,7 @@ show_pass_to = function(player_index) {
 show_role = function(player_index) {
     $('#pass_to_button').unbind();
     $('.pass_to_page').animate({
-        left: "-300px"
+        left: "-100vw"
     }, 200);
 
     // Put role information in page
@@ -432,7 +496,7 @@ show_done = function() {
 function hide_done(){
     $('body').find("input").unbind();
     $('.done_page').animate({
-        left: "-300px"
+        left: "-100vw"
     }, 200);
 
 }
