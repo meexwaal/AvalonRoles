@@ -1,8 +1,20 @@
+h1 {
+    color: #555555;
+    font-family: Georgia;
+}
+
+h2 {
+    font-family: Georgia;
+    font-weight: normal;
+}
+
 body {
     left: 0;
     margin: 0;
     overflow: hidden;
     position: relative;
+    text-align: center;
+    font-family: Georgia;
 }
 p + ul {
     margin-top: -16px;          /* Font size */
@@ -25,6 +37,8 @@ p + ul {
     left: -100vw;
     position: fixed;
     width: 100vw;
+    text-align: left;
+    margin-left: 5%;
 }
 
 .get_custom_set_page {
