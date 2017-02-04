@@ -10,17 +10,23 @@
             src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="app.js"></script>
 
+    <h1>Avalon Roles</h1>
+
+
     <!-- Page to get num_players -->
     <div class="num_players_page">
+        <p>Number of players:</p>
         <input type="number" min="5" value="5" name="num_players">
         <!-- <input type="text" size="5" name="b"> =
              <span id="result">?</span></p> -->
-        <br>
+        <br> <br>
         <input type="submit" id="num_players_button" value="Next"/>
     </div>
 
     <!-- Page to get player names -->
     <div class="get_names_page">
+        <!-- TODO: Fix test positioning -->
+        <p>Player names:</p>
         <input type="submit" id="get_names_button" value="Next"/>
     </div>
 
@@ -184,8 +190,9 @@
 
     <!-- Page to show who to pass to -->
     <div class="pass_to_page">
-        Pass to <span class="name"></span>
-        <br>
+        <h2>Pass to</h2>
+        <span class="name"></span>
+        <br> <br> <br>
         <input type="submit" id="pass_to_button" value="That's me"/>
     </div>
 
@@ -195,7 +202,7 @@
         <p>
             Alignment: Loyal to <span class="alignment"></span>
             <br>
-            Role: <span class="role"></span>.
+            <b>Role:</b> <span class="role"></span>.
         </p>
 
         <div class="spy_info">
