@@ -33,7 +33,6 @@ var set_snape_set;
 var set_lancelot_set;
 var show_get_custom_set;
 var get_custom_set;
-var assign_roles;
 var show_pass_to;
 var show_role;
 var show_done;
@@ -50,7 +49,8 @@ show_get_number = function() {
      *     }
      * });*/
     $('input[name=num_players]').focus();
-}
+};
+
 get_number = function() {
     num_players = $('input[name="num_players"]').val();
     num_bad = Math.ceil(num_players / 3);
@@ -67,6 +67,7 @@ show_get_names = function() {
 
     // Populate the page with text boxes for player names
     //$('.get_names_page').find
+
     $(".get_name_input").remove();
     for(var i = num_players - 1; i >= 0; i--){
         $('.get_names_page').prepend(

@@ -15,6 +15,7 @@ body {
     position: relative;
     text-align: center;
     font-family: Georgia;
+    background-color: #fdfdfd;
 }
 p + ul {
     margin-top: -16px;          /* Font size */
@@ -28,7 +29,7 @@ p + ul {
 }
 
 .get_names_page {
-    left: -100vw;
+    left: -150vw; /* Fix text leaking in */
     position: fixed;
     width: 100vw;
 }
