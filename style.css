@@ -1,13 +1,3 @@
-h1 {
-    color: #555555;
-    font-family: Georgia;
-}
-
-h2 {
-    font-family: Georgia;
-    font-weight: normal;
-}
-
 body {
     left: 0;
     margin: 0;
@@ -16,9 +6,30 @@ body {
     text-align: center;
     font-family: Georgia;
     background-color: #fdfdfd;
+    font-size: 3em; /* Influences size of everything else */
 }
-p + ul {
-    margin-top: -16px;          /* Font size */
+
+/* For desktop */
+@media screen and (min-device-width: 480px) {
+    body {
+        font-size: 1em;
+    }
+}
+
+h1 {
+    color: #555555;
+    font-family: Georgia;
+    font-size: 1.5em;
+}
+
+h2 {
+    font-family: Georgia;
+    font-weight: normal;
+}
+
+input {
+    font-size: 1em;
+
 }
 
 .num_players_page {
@@ -29,39 +40,40 @@ p + ul {
 }
 
 .get_names_page {
-    left: -150vw; /* Fix text leaking in */
+    left: -200vw; /* Fix text leaking in */
     position: fixed;
     width: 100vw;
 }
 
 .get_role_set_page {
-    left: -100vw;
+    left: -200vw;
     position: fixed;
-    width: 100vw;
+    width: 90vw;
     text-align: left;
-    margin-left: 5%;
+    margin-left: 5vw;
 }
 
 .get_custom_set_page {
     left: -100vw;
     position: fixed;
-    width: 100vw;
+    width: 90vw;
 }
 
 .pass_to_page {
     left: -100vw;
     position: fixed;
-    width: 100vw;
+    width: 90vw;
 }
 
 .show_role_page {
     left: -100vw;
     position: fixed;
-    width: 100vw;
+    width: 90vw;
+    margin-left: 5vw;
 }
 
 .done_page {
     left: -100vw;
     position: fixed;
-    width: 100vw;
+    width: 90vw;
 }
