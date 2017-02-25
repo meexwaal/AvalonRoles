@@ -92,7 +92,7 @@ get_names = function() {
 show_get_role_set = function() {
     $('#get_names_button').unbind();
     $('.get_names_page').animate({
-        left: "-100vw"
+        left: "-200vw"
     }, 200);
 
     // Fill class=num_good with value of num_good
@@ -292,14 +292,14 @@ function hide_get_role_set(){
     $('#custom_set').unbind();
 
     $('.get_role_set_page').animate({
-        left: "-100vw"
+        left: "-200vw"
     }, 200);
 }
 
 show_pass_to = function(player_index) {
     $('#show_role_button').unbind();
     $('.show_role_page').animate({
-        left: "-100vw"
+        left: "-200vw"
     }, 200);
     // Reset role info page
     $('.alignment').empty();
