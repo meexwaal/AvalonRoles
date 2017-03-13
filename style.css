@@ -1,11 +1,14 @@
+html, body {
+    overflow-y: hidden;
+}
 body {
     left: 0;
-    margin: 0;
-    overflow: hidden;
+    margin:0;
     text-align: center;
     font-family: Georgia;
     background-color: #fdfdfd;
     font-size: 3em; /* Influences size of everything else */
+    color: #404040;
 }
 
 /* For desktop */
@@ -26,15 +29,15 @@ h2 {
     font-weight: normal;
 }
 
-input {
+input, button {
     font-size: 1em;
 }
 
 .blue {
-    color: #3030c0;
+    color: #3030b0;
 }
 .red {
-    color: #c03030;
+    color: #b03030;
 }
 
 #role_set_list {
@@ -44,9 +47,10 @@ input {
 }
 .role_set_box {
     position: relative;
-    width:90%;
+    width:100%;
     /* height:100px; */
     background-color:#ddddfd;
+    color: #404040;
     border:2px solid white;
 }
 .role_set_box:hover {
@@ -58,9 +62,8 @@ input {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    /* height: 10%; */
     font-family: Georgia;
-    font-size: 1.2em;
+    font-size: 115%
 }
 .role_list {
     position: relative;
@@ -86,7 +89,9 @@ input {
 #get_role_set_page {
     left: -200%;
     position: absolute;
-    width: 100%;
+    width: 90%;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 #snape_list {
     margin-left: 10%;
