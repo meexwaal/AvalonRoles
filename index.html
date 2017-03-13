@@ -7,14 +7,15 @@
 <body>
     <!-- Load Scripts -->
     <script type="text/javascript"
-            src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+            src=
+            "https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js">
+    </script>
     <script src="app.js"></script>
 
     <h1>Avalon Roles</h1>
 
-
     <!-- Page to get num_players -->
-    <div class="num_players_page">
+    <div id="num_players_page">
         <p>Number of players:</p>
         <input type="number" min="5" max="20" value="5" name="num_players">
         <!-- <input type="text" size="5" name="b"> =
@@ -24,111 +25,159 @@
     </div>
 
     <!-- Page to get player names -->
-    <div class="get_names_page">
-        <!-- TODO: Fix test positioning -->
+    <div id="get_names_page">
         <p>Player names:</p>
+        <div id="get_names_inputs">
+            <!-- Javascript inserts player name boxes here -->
+        </div>
+        <br>
         <input type="submit" id="get_names_button" value="Next"/>
     </div>
 
     <!-- Page to get role set -->
-    <div class="get_role_set_page">
+    <div id="get_role_set_page">
         <!-- Display num_good and num_bad -->
         <p>There are
             <span class="num_good"></span>
-            <span style="color:blue">Servants of Arthur</span> and
+            <span class="blue">Servants of Arthur</span> and
             <span class="num_bad"></span>
-            <span style="color:red">Minions of Mordred</span>
+            <span class="red">Minions of Mordred</span>
         </p>
 
         <p>What character set do you want to use?</p>
 
-        <!-- Bland -->
-        <input type="submit" id="bland_set" value="Bland"/>
-        <label>
-            <span class="num_good"></span>
-            <span style="color:blue">Knights</span>,
-            <span class="num_bad"></span>
-            <span style="color:red">Minions</span>
-        </label>
-        <br>
+        <div id="role_set_list">
+            <!-- Bland -->
+            <button type="submit" id="bland_set" class="role_set_box">
+                <div class="role_set_title">
+                    Bland
+                </div>
+                <div class="role_list">
+                    <span class="num_good"></span>
+                    <span class="blue">Knights</span>
+                    <br>
+                    <span class="num_bad"></span>
+                    <span class="red">Minions</span>
+                </div>
+            </button>
+            <br>
 
-        <!-- Blind Spies -->
-        <input type="submit" id="blind_set" value="Blind Spies"/>
-        <label>
-            <span class="num_good"></span>
-            <span style="color:blue">Knights</span>,
-            <span class="num_bad"></span>
-            <span style="color:red">Oberons</span>
-        </label>
-        <br>
+            <!-- Blind Spies -->
+            <button type="submit" id="blind_set" class="role_set_box">
+                <div class="role_set_title">
+                    Blind Spies
+                </div>
+                <div class="role_list">
+                    <span class="num_good"></span>
+                    <span class="blue">Knights</span>
+                    <br>
+                    <span class="num_bad"></span>
+                    <span class="red">Oberons</span>
+                </div>
+            </button>
+            <br>
 
-        <!-- Party -->
-        <input type="submit" id="party_set" value="Party"/>
-        <label>
-            <span style="color:blue">Merlin</span>,
-            <span style="color:blue">Percival</span>,
-            <span style="color:red">Mordred</span>,
-            <span style="color:red">Morgana</span><!--
-         --><span class="remove_lt_3_bad">,
-                <!-- Javascript will remove if there are <3 spies -->
-                <span style="color:red">Oberon</span>
-            </span>
-        </label>
-        <br>
+            <!-- Party -->
+            <button type="submit" id="party_set" class="role_set_box">
+                <div class="role_set_title">
+                    Party
+                </div>
+                <div class="role_list">
+                    <span class="blue">Merlin</span>
+                    <br>
+                    <span class="blue">Percival</span>
+                    <br>
+                    <span class="red">Mordred</span>
+                    <br>
+                    <span class="red">Morgana</span>
+                    <span class="remove_lt_3_bad">
+                        <!-- Javascript will remove if there are <3 spies -->
+                        <br>
+                        <span class="red">Oberon</span>
+                    </span>
+                </div>
+            </button>
+            <br>
 
-        <!-- Snape -->
-        <input type="submit" id="snape_set" value="Snape"/>
-        <label>
-            <span style="color:blue">Merlin</span>,
-            <span style="color:blue">Percival</span>,
-            Random <span class="num_bad"></span> from {
-            <span style="color:blue">Snape</span>,
-            <span style="color:red">Mordred</span>,
-            <span style="color:red">Morgana</span>,
-            <span style="color:red">Oberon</span><!--
-         --><span class="remove_lt_4_good">,
-                <!-- Javascript will remove if there are <4 good -->
-                <span class="num_good-3"></span> <!-- (num_good - 3) -->
-                <span style="color:red">Minion<span class="remove_lt_5_good">s
-                </span>
-                </span>
-            </span>
-            }
-        </label>
-        <br>
+            <!-- Snape -->
+            <button type="submit" id="snape_set" class="role_set_box">
+                <div class="role_set_title">
+                    Snape
+                </div>
+                <div class="role_list">
+                    <span class="blue">Merlin</span>
+                    <br>
+                    <span class="blue">Percival</span>
+                    <br>
+                    Random <span class="num_bad"></span>:
+                    <div id="snape_list">
+                        <span class="blue">Snape</span>
+                        <br>
+                        <span class="red">Mordred</span>
+                        <br>
+                        <span class="red">Morgana</span>
+                        <br>
+                        <span class="red">Oberon</span>
+                        <span class="remove_lt_4_good">
+                            <!-- Javascript will remove if there are <4 good -->
+                            <br>
+                            <span class="num_good-3"></span> <!-- (num_good - 3) -->
+                            <span class="red">
+                                Minion<span class="remove_lt_5_good">s</span>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </button>
+            <br>
 
-        <!-- Lancelot -->
-        <input type="submit" id="lancelot_set" value="Lancelot"/>
-        <label>
-            <span style="color:blue">Merlin</span>,
-            <span style="color:blue">Percival</span>,
-            <span style="color:blue">Good Lancelot</span>,
-            <span style="color:red">Evil Lancelot</span>,
-            <span style="color:red">Mordred</span><!--
-         --><span class="remove_lt_3_bad">,
-                <span style="color:red">Morgana</span><!--
-         --></span><!--
-         --><span class="remove_lt_4_bad">,
-                <span style="color:red">Oberon</span>
-            </span>
-        </label>
-        <br>
+            <!-- Lancelot -->
+            <button type="submit" id="lancelot_set" class="role_set_box">
+                <div class="role_set_title">
+                    Lancelot
+                </div>
+                <div class="role_list">
+                    <span class="blue">Merlin</span>
+                    <br>
+                    <span class="blue">Percival</span>
+                    <br>
+                    <span class="blue">Good Lancelot</span>
+                    <br>
+                    <span class="red">Evil Lancelot</span>
+                    <br>
+                    <span class="red">Mordred</span>
+                    <span class="remove_lt_3_bad">
+                        <br>
+                        <span class="red">Morgana</span>
+                    </span>
+                    <span class="remove_lt_4_bad">
+                        <br>
+                        <span class="red">Oberon</span>
+                    </span>
+                </div>
+            </button>
+            <br>
 
-        <!-- Custom -->
-        <input type="submit" id="custom_set" value="Custom"/>
-        <label>
-            Choose your own set
-        </label>
+            <!-- Custom -->
+            <button type="submit" id="custom_set" class="role_set_box">
+                <div class="role_set_title">
+                    Custom
+                </div>
+                <div class="role_list">
+                    Choose your own set
+                </div>
+            </button>
+        </div>
     </div>
 
     <!-- Page to get custom set of roles -->
-    <div class="get_custom_set_page">
+    <div id="get_custom_set_page">
         <p>
             There are
             <span class="num_good"></span>
-            <span style="color:blue">Servants of Arthur</span> and
+            <span class="blue">Servants of Arthur</span> and
             <span class="num_bad"></span>
-            <span style="color:red">Minions of Mordred</span>
+            <span class="red">Minions of Mordred</span>
         </p>
         <p>
             If you select more roles of one alignment than the number of players
@@ -137,17 +186,17 @@
         </p>
         <p>
             Note: If you select more than <span class="num_good"></span>
-            <span style="color:blue">Servants of Arthur</span>, Merlin may not be
-            selected.
+            <span class="blue">Servants of Arthur</span>,
+            Merlin may not be selected.
         </p>
         <p>
             For Snape, use <span class="num_good"></span>
-            <span style="color:red">Minions of Mordred</span>
-            and 1 <span style="color:blue">Snape</span>.
+            <span class="red">Minions of Mordred</span>
+            and 1 <span class="blue">Snape</span>.
         </p>
 
 
-        <span style="color:blue">Servants of Arthur</span>
+        <span class="blue">Servants of Arthur</span>
         <br>
         <input type="number" id="num_normal_good" min="0">
         <label>Knights</label>
@@ -166,7 +215,7 @@
         <br>
         <br>
 
-        <span style="color:red">Minions of Mordred</span>
+        <span class="red">Minions of Mordred</span>
         <br>
         <input type="number" id="num_normal_bad" min="0">
         <label>Minions</label>
@@ -189,7 +238,7 @@
     </div>
 
     <!-- Page to show who to pass to -->
-    <div class="pass_to_page">
+    <div id="pass_to_page">
         <h2>Pass to</h2>
         <span class="name"></span>
         <br> <br> <br>
@@ -197,7 +246,7 @@
     </div>
 
     <!-- Page to show role information -->
-    <div class="show_role_page">
+    <div id="show_role_page">
         <p><span class="name"></span></p>
         <p>
             Alignment: Loyal to <span class="alignment"></span>
@@ -236,7 +285,7 @@
     </div>
 
     <!-- Page to redirect after all is done -->
-    <div class="done_page">
+    <div id="done_page">
         <input type="submit" id="same_setup_button" value="Same Setup"/>
         <label>
             Play again with the same players and the same set of roles.

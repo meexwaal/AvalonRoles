@@ -2,7 +2,6 @@ body {
     left: 0;
     margin: 0;
     overflow: hidden;
-    position: relative;
     text-align: center;
     font-family: Georgia;
     background-color: #fdfdfd;
@@ -29,51 +28,91 @@ h2 {
 
 input {
     font-size: 1em;
-
 }
 
-.num_players_page {
+.blue {
+    color: #3030c0;
+}
+.red {
+    color: #c03030;
+}
+
+#role_set_list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Javascript sets max height for us */
+}
+.role_set_box {
+    position: relative;
+    width:90%;
+    /* height:100px; */
+    background-color:#ddddfd;
+    border:2px solid white;
+}
+.role_set_box:hover {
+    background-color:#bdbdfd;
+}
+
+.role_set_title {
+    width: 35%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    /* height: 10%; */
+    font-family: Georgia;
+    font-size: 1.2em;
+}
+.role_list {
+    position: relative;
+    left: 40%;
+    padding: 2%;
+    text-align: left;
+    font-family: Georgia;
+}
+
+#num_players_page {
     left: 0px;
     /* height: 100%; */
-    position: fixed;
-    width: 100vw;
+    position: absolute;
+    width: 100%;
 }
 
-.get_names_page {
-    left: -200vw; /* Fix text leaking in */
-    position: fixed;
-    width: 100vw;
+#get_names_page {
+    left: -200%; /* Fix text leaking in */
+    position: absolute;
+    width: 100%;
 }
 
-.get_role_set_page {
-    left: -200vw;
-    position: fixed;
-    width: 90vw;
-    text-align: left;
-    margin-left: 5vw;
+#get_role_set_page {
+    left: -200%;
+    position: absolute;
+    width: 100%;
+}
+#snape_list {
+    margin-left: 10%;
 }
 
-.get_custom_set_page {
-    left: -100vw;
-    position: fixed;
-    width: 90vw;
+#get_custom_set_page {
+    left: -100%;
+    position: absolute;
+    width: 90%;
 }
 
-.pass_to_page {
-    left: -100vw;
-    position: fixed;
-    width: 90vw;
+#pass_to_page {
+    left: -100%;
+    position: absolute;
+    width: 90%;
 }
 
-.show_role_page {
-    left: -100vw;
-    position: fixed;
-    width: 90vw;
-    margin-left: 5vw;
+#show_role_page {
+    left: -100%;
+    position: absolute;
+    width: 90%;
+    margin-left: 5%;
 }
 
-.done_page {
-    left: -100vw;
-    position: fixed;
-    width: 90vw;
+#done_page {
+    left: -100%;
+    position: absolute;
+    width: 90%;
 }

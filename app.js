@@ -38,7 +38,7 @@ var show_role;
 var show_done;
 
 show_get_number = function() {
-    $('.num_players_page').animate({
+    $('#num_players_page').animate({
         left: "0px"
     }, 200);
     $('#num_players_button').bind('click', get_number);
@@ -61,22 +61,20 @@ get_number = function() {
 
 show_get_names = function() {
     $('#num_players_button').unbind();
-    $('.num_players_page').animate({
+    $('#num_players_page').animate({
         left: "-100vw"
     }, 200);
 
     // Populate the page with text boxes for player names
-    //$('.get_names_page').find
-
-    $(".get_name_input").remove();
-    for(var i = num_players - 1; i >= 0; i--){
-        $('.get_names_page').prepend(
+    $('.get_name_input').remove();
+    for(var i = 0; i < num_players; i++){
+        $('#get_names_inputs').append(
             "<span class='get_name_input'> \
 <input type='text' name='name" + String(i) + "'> \
 <br></span>");
     }
 
-    $('.get_names_page').animate({
+    $('#get_names_page').animate({
         left: "0px"
     }, 200);
     $('#get_names_button').bind('click', get_names);
@@ -91,9 +89,17 @@ get_names = function() {
 
 show_get_role_set = function() {
     $('#get_names_button').unbind();
-    $('.get_names_page').animate({
+    $('#get_names_page').animate({
         left: "-200vw"
     }, 200);
+
+    // Set max-height of scrollable area
+    // because I can't figure out how to do it in CSS :(
+    $('#role_set_list').css('max-height',
+                            $(window).height()
+                            - $('#role_set_list').offset().top
+                            - parseInt($('.role_set_box')
+                                       .css("border-top-width"), 10));
 
     // Fill class=num_good with value of num_good
     $('.num_good').empty();
@@ -116,7 +122,7 @@ show_get_role_set = function() {
         }
     }
 
-    $('.get_role_set_page').animate({
+    $('#get_role_set_page').animate({
         left: "0px"
     }, 200);
     $('#bland_set').bind('click', set_bland_set);
@@ -128,13 +134,13 @@ show_get_role_set = function() {
 };
 show_get_custom_set = function() {
     hide_get_role_set();
-    $('.get_custom_set_page').animate({
+    $('#get_custom_set_page').animate({
         left: "0px"
     }, 200);
 
     $('#get_custom_set_button').bind('click', function(){
         if(get_custom_set()){ // If there are enough goods and bads
-            $('.get_custom_set_page').animate({
+            $('#get_custom_set_page').animate({
                 left: "-100vw"
             }, 200);
             $('#get_custom_set_button').unbind();
@@ -291,14 +297,14 @@ function hide_get_role_set(){
     $('#lancelot_set').unbind();
     $('#custom_set').unbind();
 
-    $('.get_role_set_page').animate({
+    $('#get_role_set_page').animate({
         left: "-200vw"
     }, 200);
 }
 
 show_pass_to = function(player_index) {
     $('#show_role_button').unbind();
-    $('.show_role_page').animate({
+    $('#show_role_page').animate({
         left: "-200vw"
     }, 200);
     // Reset role info page
@@ -324,7 +330,7 @@ show_pass_to = function(player_index) {
     // Put name in class=name
     $('.name').empty();
     $('.name').append(names[player_index]);
-    $('.pass_to_page').animate({
+    $('#pass_to_page').animate({
         left: "0px"
     }, 200);
     $('#pass_to_button').bind('click', function(){
@@ -333,7 +339,7 @@ show_pass_to = function(player_index) {
 };
 show_role = function(player_index) {
     $('#pass_to_button').unbind();
-    $('.pass_to_page').animate({
+    $('#pass_to_page').animate({
         left: "-100vw"
     }, 200);
 
@@ -454,7 +460,7 @@ show_role = function(player_index) {
         break;
     }
 
-    $('.show_role_page').animate({
+    $('#show_role_page').animate({
         left: "0px"
     }, 200);
     // Done button only appears after a random amount of time
@@ -463,11 +469,11 @@ show_role = function(player_index) {
         $('#show_role_button').bind('click', function(){
             show_pass_to(player_index + 1);
         });
-    }, (Math.random() * 5 + 5) * 1000);
+    }, (Math.random() * 5 + 2) * 1000);
 };
 
 show_done = function() {
-    $('.done_page').animate({
+    $('#done_page').animate({
         left: "0px"
     }, 200);
 
@@ -496,7 +502,7 @@ show_done = function() {
 };
 function hide_done(){
     $('body').find("input").unbind();
-    $('.done_page').animate({
+    $('#done_page').animate({
         left: "-100vw"
     }, 200);
 
