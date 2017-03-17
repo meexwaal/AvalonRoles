@@ -95,11 +95,15 @@ show_get_role_set = function() {
 
     // Set max-height of scrollable area
     // because I can't figure out how to do it in CSS :(
-    $('#role_set_list').css('max-height',
-                            $(window).height()
-                            - $('#role_set_list').offset().top
-                            - parseInt($('.role_set_box')
-                                       .css("border-top-width"), 10));
+    setRoleSetHeight = function() {
+        $('#role_set_list').css('max-height',
+                                $(window).height()
+                                - $('#role_set_list').offset().top
+                                - parseInt($('.role_set_box')
+                                           .css("border-top-width"), 10));
+    };
+    setRoleSetHeight();
+    $( window ).resize(setRoleSetHeight);
 
     // Fill class=num_good with value of num_good
     $('.num_good').empty();
@@ -320,7 +324,8 @@ show_pass_to = function(player_index) {
     $('#merlin').empty();
     $('#percival_info').show();
     $('#percival_list').empty();
-    $('#show_role_button').hide();
+    $('#done_load_bar').width("0%");
+    $('#show_role_button').css("color", "rgba(64,64,64,0.5)"); // #40404080
 
     if(player_index == num_players){
         show_done();
@@ -463,13 +468,20 @@ show_role = function(player_index) {
     $('#show_role_page').animate({
         left: "0px"
     }, 200);
+
+    var waitTime = (Math.random() * 5 + 2) * 1000;
+    // Animate sliding loading bar
+    $('#done_load_bar').animate({
+        width: "100%"
+    }, waitTime);
+
     // Done button only appears after a random amount of time
-    setTimeout(function(){
-        $('#show_role_button').show();
+    setTimeout(function() {
         $('#show_role_button').bind('click', function(){
             show_pass_to(player_index + 1);
         });
-    }, (Math.random() * 5 + 2) * 1000);
+        $('#show_role_button').css("color", "rgba(64,64,64,1)"); // #404040
+    }, waitTime);
 };
 
 show_done = function() {
